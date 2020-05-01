@@ -5,7 +5,6 @@ class Book extends Component {
     shelf: this.props.currentShelf,
   };
   handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({ shelf: e.target.value });
 
     let shelf = e.target.value;
@@ -14,7 +13,7 @@ class Book extends Component {
   };
 
   render() {
-    const { author, title, imageUrl, currentShelf } = this.props;
+    const { author, title, imageUrl } = this.props;
 
     return (
       <li>
@@ -41,7 +40,9 @@ class Book extends Component {
             </div>
           </div>
           <div className="book-title">{title}</div>
-          <div className="book-authors">{author}</div>
+          <div className="book-authors">
+            {author && author.map((writer, i) => <span key={i}>{writer}</span>)}
+          </div>
         </div>
       </li>
     );

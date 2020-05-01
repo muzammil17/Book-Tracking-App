@@ -13,7 +13,6 @@ class Search extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.shelfs);
     let { currentlyReading, read, wantToRead } = this.props.shelfs;
     const shelfs = [...currentlyReading, ...read, ...wantToRead];
     if (shelfs.length !== 0) {
@@ -23,7 +22,6 @@ class Search extends Component {
       this.forceUpdate();
     } else {
       BooksAPI.getAll().then((data) => {
-        console.log(data);
         this.setState({
           shelfs: [...data],
         });
@@ -33,10 +31,8 @@ class Search extends Component {
 
   handleChange = (e) => {
     let query = e.target.value;
-    console.log("change", this.state.shelfs);
     BooksAPI.search(query).then((data) => {
       if (Array.isArray(data)) {
-        console.log(data);
         data.map((book) => {
           this.state.shelfs.map((b) => {
             if (book.id === b.id) {
@@ -44,7 +40,6 @@ class Search extends Component {
             }
           });
         });
-        console.log(data);
         this.setState({
           books: data,
         });
@@ -58,7 +53,6 @@ class Search extends Component {
 
   render() {
     const { books } = this.state;
-
     return (
       <React.Suspense>
         <div className="search-books">

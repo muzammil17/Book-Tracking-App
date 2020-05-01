@@ -1,10 +1,10 @@
 import React from "react";
-import "./App.css";
 import * as BooksAPI from "./BooksAPI";
 import Dashboard from "./components/dashboard";
 import Search from "./components/search";
-
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import "./App.css";
 
 class BooksApp extends React.Component {
   state = {
@@ -18,7 +18,6 @@ class BooksApp extends React.Component {
   };
   componentDidMount() {
     BooksAPI.getAll().then((data) => {
-      console.log(data);
       this.setState({
         shelfs: {
           currentlyReading: data.filter(
