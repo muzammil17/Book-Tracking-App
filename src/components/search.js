@@ -18,11 +18,7 @@ class Search extends Component {
     const shelfs = [...currentlyReading, ...read, ...wantToRead];
     if (shelfs.length !== 0) {
       this.setState({
-        shelfs: [
-          ...shelfs.currentlyReading,
-          ...shelfs.read,
-          ...shelfs.wantToRead,
-        ],
+        shelfs,
       });
       this.forceUpdate();
     } else {
